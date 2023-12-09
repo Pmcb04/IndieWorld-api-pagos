@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: API de Métodos de Pagos
+  description: API para la gestión facturas en una plataforma de videojuegos
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/Devgram/APIPagos/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /facturas/generar:
+    post:
+      tags:
+      - Facturas
+      summary: Generar factura
+      description: Genera una factura basada en el tipo de suscripción del usuario.
+      operationId: generarFactura
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/facturas_generar_body'
+        required: true
+      responses:
+        "200":
+          description: Factura generada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Factura'
+        "400":
+          description: Solicitud incorrecta
+      x-swagger-router-controller: Facturas
+  /facturas/{id_usuario}:
+    get:
+      tags:
+      - Facturas
+      summary: Obtener facturas de usuario
+      description: Obtiene todas las facturas generadas por un usuario.
+      operationId: obtenerFacturasUsuario
+      parameters:
+      - name: id_usuario
+        in: path
+        description: ID del usuario para obtener sus facturas
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Facturas obtenidas exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Factura'
+                x-content-type: application/json
+        "404":
+          description: Facturas no encontradas para el usuario
+      x-swagger-router-controller: Facturas
+components:
+  schemas:
+    Factura:
+      required:
+      - detalles
+      - fecha_facturacion
+      - id_factura
+      - id_usuario
+      - monto
+      - tipo_suscripcion
+      type: object
+      properties:
+        id_factura:
+          type: integer
+          description: ID de la factura generada
+        id_usuario:
+          type: integer
+          description: ID del usuario asociado a la factura
+        tipo_suscripcion:
+          type: string
+          description: Tipo de suscripción del usuario
+        monto:
+          type: number
+          description: Monto a pagar en la factura
+        detalles:
+          type: string
+          description: Detalles adicionales de la factura
+        fecha_facturacion:
+          type: string
+          description: Fecha de facturación
+      example:
+        id_factura: 0
+        fecha_facturacion: fecha_facturacion
+        monto: 1.46581298050294517310021547018550336360931396484375
+        id_usuario: 6
+        tipo_suscripcion: tipo_suscripcion
+        detalles: detalles
+    facturas_generar_body:
+      required:
+      - id_usuario
+      - tipo_suscripcion
+      type: object
+      properties:
+        id_usuario:
+          type: integer
+          description: ID del usuario
+        tipo_suscripcion:
+          type: string
+          description: Tipo de suscripción del usuario
