@@ -6,6 +6,8 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/Devgram/APIPagos/1.0.0
   description: SwaggerHub API Auto Mocking
+- url: https://indie-world-api-pagos.vercel.app/Devgram/APIPagos/1.0.0
+  description: Vercel Server Produccion
 paths:
   /facturas/generar:
     post:

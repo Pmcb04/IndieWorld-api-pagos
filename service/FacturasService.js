@@ -25,7 +25,7 @@ exports.generarFactura = function(body) {
       if (Object.keys(examples).length > 0) {
         resolve(examples[Object.keys(examples)[0]]);
       } else {
-        resolve();
+        reject(new Error("Error al generar la factura"))
       }
 
     }else{
@@ -60,9 +60,9 @@ exports.obtenerFacturasUsuario = function(id_usuario) {
       examples.push(example);
     };
     if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+      resolve(examples)
     } else {
-      resolve();
+      reject(new Error("Error al mostrar la lista de las facturas"))
     }
   });
 }
