@@ -25,11 +25,15 @@ exports.generarFactura = function(body) {
       if (Object.keys(examples).length > 0) {
         resolve(examples[Object.keys(examples)[0]]);
       } else {
-        reject(new Error("Error al generar la factura"))
+        var error = new Error("Error al generar la factura");
+        error.status = 500; // Establecer el código de estado HTTP 500 (Error interno del servidor)
+        reject(error);
       }
 
     }else{
-      reject(new Error("El tipo de suscripción proporcionado no es válido."));
+      var error = new Error("El tipo de suscripción proporcionado no es válido.");
+      error.status = 404; // Establecer el código de estado HTTP 404
+      reject(error);
     }
 
   });
@@ -62,7 +66,9 @@ exports.obtenerFacturasUsuario = function(id_usuario) {
     if (Object.keys(examples).length > 0) {
       resolve(examples)
     } else {
-      reject(new Error("Error al mostrar la lista de las facturas"))
+      var error = new Error("Error al mostrar la lista de las facturas")
+      error.status = 500; // Establecer el código de estado HTTP 500 (Error interno del servidor)
+      reject(error);
     }
   });
 }

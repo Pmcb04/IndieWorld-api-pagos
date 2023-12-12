@@ -29,8 +29,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Factura'
-        "400":
+        "404":
           description: Solicitud incorrecta
+        "500":
+          description: Error no se puede generar la factura correctamente
       x-swagger-router-controller: Facturas
   /facturas/{id_usuario}:
     get:
@@ -59,8 +61,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Factura'
                 x-content-type: application/json
-        "404":
-          description: Facturas no encontradas para el usuario
+        "500":
+          description: Error al mostar las facturas
       x-swagger-router-controller: Facturas
 components:
   schemas:
