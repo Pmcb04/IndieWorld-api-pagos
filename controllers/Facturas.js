@@ -8,6 +8,13 @@ module.exports.generarFactura = function generarFactura (req, res, next, body) {
     .then(function (response) {
       utils.writeJson(res, response);
     })
+    .catch(function(error) {
+      if (error.status === 404) {
+        res.status(404).json({ error: error.message });
+      } else {
+        res.status(500).json({ error: 'Error interno del servidor' });
+      }
+    })
     .catch(function (response) {
       utils.writeJson(res, response);
     });
@@ -17,6 +24,11 @@ module.exports.obtenerFacturasUsuario = function obtenerFacturasUsuario (req, re
   Facturas.obtenerFacturasUsuario(id_usuario)
     .then(function (response) {
       utils.writeJson(res, response);
+    })
+    .catch(function(error) {
+      if (error.status === 500){
+        res.status(500).json({ error: 'Error interno del servidor' });
+      }
     })
     .catch(function (response) {
       utils.writeJson(res, response);
