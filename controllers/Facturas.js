@@ -18,6 +18,7 @@ module.exports.generarFactura = function generarFactura (req, res, next, body) {
     .catch(function (response) {
       utils.writeJson(res, response);
     });
+
 };
 
 module.exports.obtenerFacturasUsuario = function obtenerFacturasUsuario (req, res, next, id_usuario) {
