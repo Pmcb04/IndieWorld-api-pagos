@@ -4,8 +4,6 @@ info:
   description: API para la gestión facturas en una plataforma de videojuegos
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/Devgram/APIPagos/1.0.0
-  description: SwaggerHub API Auto Mocking
 - url: https://indie-world-api-pagos.vercel.app/Devgram/APIPagos/1.0.0
   description: Vercel Server Produccion
 paths:
