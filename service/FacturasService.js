@@ -2,6 +2,8 @@
 var subscriptionTypes = ["Básica", "Estándar", "Premium"]; // Ejemplo de tipos de suscripción
 
 
+
+
 /**
  * Generar factura
  * Genera una factura basada en el tipo de suscripción del usuario.
@@ -116,3 +118,15 @@ function getRandomDetails() {
   return details[randomIndex];
 }
 
+const Prometheus = require('prom-client');
+
+/**
+ * getMetrics
+ * Endpoint to retrieve Prometheus metrics
+ * @returns {Promise} Promise object represents the handling of the metrics endpoint
+ **/
+exports.getMetrics = function() {
+  return new Promise(function(resolve, reject) {
+    resolve(Prometheus.register.metrics())
+  });
+};

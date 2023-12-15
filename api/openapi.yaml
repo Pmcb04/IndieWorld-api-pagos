@@ -62,6 +62,19 @@ paths:
         "500":
           description: Error al mostar las facturas
       x-swagger-router-controller: Facturas
+  /metrics:
+    get:
+      tags:
+      - Facturas
+      summary: Obtiene metricas de la api
+      description: Obtiene metricas de la api
+      operationId: getMetrics
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: Facturas
 components:
   schemas:
     Factura:
